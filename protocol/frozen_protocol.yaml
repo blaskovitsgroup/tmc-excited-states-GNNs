@@ -1,0 +1,222 @@
+protocol:
+  name: tmqmg_es_confirmatory_main
+  release: main
+  freeze_date: '2026-07-24'
+  status: locally_frozen_pending_external_timestamp
+  exploratory_predecessor: ../
+  limitation: numbers are prospectively confirmatory on a new identity-grouped split,
+    but model families and questions were selected during exploratory work on the
+    same source pool.
+data:
+  source_manifest: manifests/source_data_manifest.json
+  n_states: 30
+  solvents:
+  - gasphase
+  - acetone
+  regions:
+  - uv
+  - vis
+  - nir
+  band_threshold:
+    quantity: oscillator_strength
+    operator: '>='
+    value: 0.01
+  invalid_wavelength_rule: mask_if_nonfinite_or_le_zero
+  direct_shift_targets: excluded
+split:
+  algorithm: sklearn.model_selection.StratifiedGroupKFold
+  n_splits: 10
+  shuffle: true
+  seed: 20260724
+  fold_assignment:
+    test:
+    - 0
+    validation:
+    - 1
+    training:
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+  sort_input_by: id
+  group_rules:
+  - canonical_isomeric_smiles_plus_charge
+  - normalized_raw_smiles_plus_charge_if_uncanonicalizable
+  - exact_geometry_fingerprint
+  - verified_composition_matched_kabsch_rmsd_le_0.10_angstrom
+  stratification:
+  - metal
+  - charge
+  - atom_count_quintile
+  - gas_visible_availability
+  - acetone_visible_availability
+  rare_stratum_rule: composite_strata_with_fewer_than_10_molecules_are_pooled
+  rerolls_permitted: 0
+training:
+  seeds:
+  - 2737188456
+  - 1409281222
+  - 2696188251
+  - 3663425383
+  - 451851728
+  optimizer: AdamW
+  learning_rate: 0.0002
+  weight_decay: 1.0e-05
+  max_epochs: 300
+  warmup_epochs: 5
+  scheduler:
+    name: ReduceLROnPlateau
+    factor: 0.5
+    patience_epochs: 10
+  early_stopping:
+    metric: validation_joint_molecule_energy_mae_eV
+    patience_epochs: 40
+    min_delta_eV: 0.0001
+  gradient_clip_norm: 5.0
+  precision: float32
+  resume_requires_exact_fingerprint: true
+models:
+- id: xgboost_descriptors
+  family: XGBoost
+  regime: ground_state_descriptors
+  input:
+  - charge
+  - molecular_mass
+  - n_atoms
+  - n_electrons
+  - tzvp_homo_energy
+  - tzvp_lumo_energy
+  - tzvp_homo_lumo_gap
+  - tzvp_dipole_moment
+  - polarisability
+  hyperparameters:
+    n_estimators: 300
+    max_depth: 6
+    learning_rate: 0.05
+    subsample: 0.8
+    colsample_bytree: 0.8
+- id: schnet_3d
+  family: SchNet
+  regime: A
+- id: painn_3d
+  family: PaiNN
+  regime: A
+- id: graph_baseline
+  family: NatQGEncoder
+  regime: G
+  natqg_type: baseline
+- id: graph_unatq
+  family: NatQGEncoder
+  regime: G
+  natqg_type: u-NatQ
+- id: graph_dnatq
+  family: NatQGEncoder
+  regime: G
+  natqg_type: d-NatQ
+- id: painn_baseline_fusion
+  family: PaiNN+NatQGEncoder
+  regime: C
+  natqg_type: baseline
+- id: painn_unatq_fusion
+  family: PaiNN+NatQGEncoder
+  regime: C
+  natqg_type: u-NatQ
+- id: painn_dnatq_fusion
+  family: PaiNN+NatQGEncoder
+  regime: C
+  natqg_type: d-NatQ
+- regime: A
+  initialization: random_representation_weights
+- regime: A
+common_neural_architecture:
+  hidden: 192
+  interactions: 5
+  natqg_layers: 3
+  conditioning_dim: 256
+  dropout: 0.1
+  cutoff_angstrom: 5.0
+  batch_size: 256
+targets:
+  state_energy_eV:
+    enabled: true
+    primary: true
+  oscillator_log1p:
+    enabled: true
+  normalized_spectrum:
+    enabled: true
+  band_existence:
+    enabled: true
+  regional_peak_energy_eV:
+    enabled: true
+  regional_peak_log1p_intensity:
+    enabled: true
+  regional_peak_log1p_width:
+    enabled: true
+  visible_ct_class:
+    enabled: true
+    masked_without_visible_band: true
+  nto_metal_fraction:
+    enabled: true
+    masked_when_undefined: true
+  direct_lambda_shift:
+    enabled: false
+  direct_intensity_shift:
+    enabled: false
+  state_energy_solvent_shift:
+    enabled: derived_only
+loss_weights:
+  energy: 1.0
+  oscillator: 0.2
+  spectrum: 0.2
+  band: 0.2
+  peak: 0.2
+  ct: 0.1
+  nto: 0.1
+  consistency: 0.05
+  direct_shift: 0.0
+  aleatoric_uncertainty: 0.0
+run_validity:
+  fail_on_nonfinite_training_loss: true
+  fail_on_nonfinite_gradient: true
+  validation_energy_interval_eV:
+  - 0.0
+  - 15.0
+  lower_bound_is_strict: true
+  performance_based_exclusion: prohibited
+  replacement_seed: prohibited
+  minimum_valid_seeds_for_ensemble: 4
+  aggregation: arithmetic_mean_of_all_valid_fixed_seeds
+primary_endpoint:
+  unit: molecule
+  quantity: mean_absolute_energy_error_eV
+  aggregation_within_molecule: mean_over_30_states_and_2_solvents
+  aggregation_across_molecules: arithmetic_mean
+  predictor: fixed_seed_ensemble_mean
+confirmatory_comparisons:
+- - painn_dnatq_fusion
+  - painn_3d
+- - painn_dnatq_fusion
+  - xgboost_descriptors
+statistics:
+  paired_bootstrap:
+    resamples: 20000
+    seed: 20260724
+    confidence_level: 0.95
+    unit: molecule
+  multiplicity: Holm
+  family_size: 3
+  superiority:
+    minimum_mae_improvement_eV: 0.005
+    confidence_interval_must_exclude_zero: true
+    holm_adjusted_p_below: 0.05
+  practical_tie_if_abs_difference_below_eV: 0.005
+test_lock:
+  training_may_load_test_ids: false
+  training_may_build_test_loader: false
+  training_may_compute_test_metrics: false
+  final_evaluation_count: 1
+  unlock_record_required: true

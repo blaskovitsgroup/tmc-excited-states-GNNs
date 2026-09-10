@@ -1,0 +1,147 @@
+{
+  "schema_version": 2,
+  "status": "current_release",
+  "created_utc": "2026-08-03T01:28:01.332967+00:00",
+  "n_test_molecules": 7425,
+  "provenance": {
+    "ensemble_manifest_sha256": "a78c136fc21a52a7fa3879b6b388c7d88c6679cb78de06bcf6ff2e0b07bdaf25",
+    "release_authorization_sha256": "fe2235abd2f43689f8d9054ba523dc113caf3698c85804bcd1e70d0596fb281e",
+    "original_unlock_record_sha256": "2c2d5439baf991cdb38199193f204a2a1fce8e4b5bf42b34867d32d9d932de35"
+  },
+  "result_artifact_sha256": {
+    "locked_evaluation_ledger.json": "24d2172d71919c8488f54d53568cf2c89586390a37321342e7fe252fa1a0b334",
+    "locked_test_results.json": "51af57c887424b89133154183780a1639b5e0586465fab465c1f42d9e84b11fc",
+    "locked_test_per_molecule_errors.csv": "3428ee74c76a766d30da0f08fd0955ab46ea48c8ce5929b2737714faf28b2014"
+  },
+  "models": {
+    "schnet_3d": {
+      "reporting_status": "original_confirmatory",
+      "n_valid_fixed_seeds": 5,
+      "primary_joint_molecule_mae_eV": 0.13237032904589652,
+      "gasphase_mae_eV": 0.13563849165497135,
+      "acetone_mae_eV": 0.12910216643682165
+    },
+    "painn_3d": {
+      "reporting_status": "original_confirmatory",
+      "n_valid_fixed_seeds": 5,
+      "primary_joint_molecule_mae_eV": 0.126725296362022,
+      "gasphase_mae_eV": 0.12980012360118187,
+      "acetone_mae_eV": 0.12365046912286218
+    },
+    "graph_baseline": {
+      "reporting_status": "post_confirmatory_rerun",
+      "n_valid_fixed_seeds": 5,
+      "primary_joint_molecule_mae_eV": 0.1526273424681673,
+      "gasphase_mae_eV": 0.15789245262377458,
+      "acetone_mae_eV": 0.14736223231256007
+    },
+    "graph_unatq": {
+      "reporting_status": "post_confirmatory_rerun",
+      "n_valid_fixed_seeds": 5,
+      "primary_joint_molecule_mae_eV": 0.1296227552179753,
+      "gasphase_mae_eV": 0.13262210811154476,
+      "acetone_mae_eV": 0.12662340232440586
+    },
+    "graph_dnatq": {
+      "reporting_status": "original_confirmatory",
+      "n_valid_fixed_seeds": 5,
+      "primary_joint_molecule_mae_eV": 0.13924515063226992,
+      "gasphase_mae_eV": 0.14181895002578912,
+      "acetone_mae_eV": 0.1366713512387507
+    },
+    "painn_baseline_fusion": {
+      "reporting_status": "post_confirmatory_rerun",
+      "n_valid_fixed_seeds": 5,
+      "primary_joint_molecule_mae_eV": 0.12811543871682268,
+      "gasphase_mae_eV": 0.13104376649368224,
+      "acetone_mae_eV": 0.1251871109399631
+    },
+    "painn_unatq_fusion": {
+      "reporting_status": "post_confirmatory_rerun",
+      "n_valid_fixed_seeds": 5,
+      "primary_joint_molecule_mae_eV": 0.12272541159786927,
+      "gasphase_mae_eV": 0.12538293868544126,
+      "acetone_mae_eV": 0.1200678845102973
+    },
+    "painn_dnatq_fusion": {
+      "reporting_status": "original_confirmatory",
+      "n_valid_fixed_seeds": 5,
+      "primary_joint_molecule_mae_eV": 0.12317449929658845,
+      "gasphase_mae_eV": 0.12532394435744226,
+      "acetone_mae_eV": 0.12102505423573466
+    },
+    "xgboost_descriptors": {
+      "reporting_status": "original_confirmatory",
+      "n_valid_fixed_seeds": 5,
+      "primary_joint_molecule_mae_eV": 0.344757339624318,
+      "gasphase_mae_eV": 0.337286946721283,
+      "acetone_mae_eV": 0.352227732527353
+    }
+  },
+  "confirmatory_comparisons": [
+    {
+      "mean_A_minus_B_eV": -0.0035507970654335623,
+      "mae_improvement_B_minus_A_eV": 0.0035507970654335623,
+      "ci95_A_minus_B_eV": [
+        -0.004543881110199774,
+        -0.002570042399140588
+      ],
+      "paired_bootstrap_p_raw": 9.99950002499875e-05,
+      "resamples": 20000,
+      "seed": 20260724,
+      "model_A": "painn_dnatq_fusion",
+      "model_B": "painn_3d",
+      "status": "tested",
+      "multiplicity_p_value": 9.99950002499875e-05,
+      "holm_adjusted_p": 0.0002999850007499625,
+      "decision": "practical_tie"
+    },
+    {
+      "mean_A_minus_B_eV": -0.22158284032772954,
+      "mae_improvement_B_minus_A_eV": 0.22158284032772954,
+      "ci95_A_minus_B_eV": [
+        -0.22658237301246856,
+        -0.21661963239751347
+      ],
+      "paired_bootstrap_p_raw": 9.99950002499875e-05,
+      "resamples": 20000,
+      "seed": 20260724,
+      "model_A": "painn_dnatq_fusion",
+      "model_B": "xgboost_descriptors",
+      "status": "tested",
+      "multiplicity_p_value": 9.99950002499875e-05,
+      "holm_adjusted_p": 0.0002999850007499625,
+      "decision": "A_outperforms_B"
+    }
+  ],
+  "decision_rule": {
+    "minimum_improvement_eV": 0.005,
+    "ci_must_exclude_zero": true,
+    "holm_adjusted_alpha": 0.05,
+    "preregistered_family_size": 3,
+    "ineligible_comparison_multiplicity_p_value": 1.0
+  },
+  "source_audit": {
+    "description": "Historical audit of the research release before packaging. Current package checks are documented in publication/VALIDATION.md.",
+    "status": "passed",
+    "checks_passed": 556,
+    "checks_failed": 0,
+    "scope": [
+      "canonical artifact hashes",
+      "post-confirmatory rerun provenance",
+      "fixed seed membership",
+      "molecule and target alignment",
+      "array shapes and finite values",
+      "probability constraints",
+      "primary MAE recomputation",
+      "per-molecule error recomputation",
+      "current-release reporting status"
+    ]
+  },
+  "post_confirmatory_models": [
+    "graph_baseline",
+    "graph_unatq",
+    "painn_baseline_fusion",
+    "painn_unatq_fusion"
+  ]
+}

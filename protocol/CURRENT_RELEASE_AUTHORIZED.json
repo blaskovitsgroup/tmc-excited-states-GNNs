@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "status": "current_release_authorized",
+  "created_utc": "2026-08-03T01:27:51.668503+00:00",
+  "not_a_new_test_unlock": true,
+  "ensemble_manifest_sha256": "a78c136fc21a52a7fa3879b6b388c7d88c6679cb78de06bcf6ff2e0b07bdaf25",
+  "ensemble_manifest_content_sha256": "d24fbcce5180aae65b592f1d24a8daf119211e443d195f1cc5232554bde6a4f2",
+  "data_fingerprint_sha256": "5abc58d68e784a577374aca019527a87ae85e568e02e18a21a4296559765dd90",
+  "locked_test_ids_sha256": "0cfcf691d8403cf879840c7db97f6bb69d6ecf7df3c3e211f7be6b35c5b5a700",
+  "n_test_molecules": 7425,
+  "original_unlock_record_sha256": "2c2d5439baf991cdb38199193f204a2a1fce8e4b5bf42b34867d32d9d932de35",
+  "purpose": "Bind the self-contained canonical release. Four models remain post-confirmatory because they were rerun after the original test unlock."
+}

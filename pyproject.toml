@@ -1,0 +1,42 @@
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "tmqmg_es"
+version = "1.0.0"
+description = "Confirmatory, leakage-resistant learning workflow for tmQMg* excited-state properties"
+requires-python = ">=3.11"
+dependencies = [
+    "numpy==2.2.2",
+    "pandas==2.2.3",
+    "pyarrow==19.0.1",
+    "scipy==1.15.1",
+    "rdkit==2024.9.4",
+    "scikit-learn==1.6.1",
+    "pyyaml==6.0.3",
+    "xgboost==3.2.0",
+    "joblib==1.5.3",
+]
+
+[project.optional-dependencies]
+painn = ["torch==2.12.1", "torch_geometric==2.7.0"]
+ml = [
+    "torch==2.12.1",
+    "torch_geometric==2.7.0",
+]
+dev = ["pytest==9.0.2", "matplotlib==3.10.0", "ruff==0.9.7"]
+
+[project.scripts]
+tmqmg-es = "tmqmg_es.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["tmqmg_es*"]
+
+[tool.ruff]
+line-length = 88
+target-version = "py311"
+
+[tool.pytest.ini_options]
+addopts = "-ra"
+testpaths = ["tests"]

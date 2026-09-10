@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "created_utc": "2026-07-24T18:08:15.745047+00:00",
+  "packaged_source_root": "source_inputs",
+  "host": "Ismaels-MacBook-Pro.local",
+  "hash_algorithm": "SHA-256",
+  "directory_aggregate_definition": "SHA256 over sorted lines of relative_path NUL bytes NUL file_sha256 newline",
+  "files": [
+    {
+      "path": "tmQMg_star-main/tmQMg*.csv",
+      "bytes": 82387771,
+      "sha256": "fa8e285a6587e91922a601e0706208d595fc1bcf266b55310858089d9f7ea2e6"
+    },
+    {
+      "path": "tmQMg-main/data/tmQMg_properties_and_targets.csv",
+      "bytes": 26188719,
+      "sha256": "3920c1c8f4ec81bc8e44b8d0256a7da1e36c8805c3c0adfd47e50c46e633f473"
+    },
+    {
+      "bytes": 44436447,
+      "sha256": "854718eec598c3608e58a5fe552b472f332d9bcc0c1b8edca267e2760907c26b"
+    },
+    {
+      "path": "natqg/baseline_graphs.zip",
+      "bytes": 232796647,
+      "sha256": "b16bcc124158607b4114929143cacefe1fef156cfdca60f649acea5c563eaa54"
+    },
+    {
+      "path": "natqg/u-NatQ_graphs.zip",
+      "bytes": 528382591,
+      "sha256": "a2af03b15c387b46f5baad338132aa17aaf3be034215cba531e41b0ec21c9240"
+    },
+    {
+      "path": "natqg/d-NatQ_graphs.zip",
+      "bytes": 1524160060,
+      "sha256": "1dd5bfac16c9ccc583990d4d1ab276d32608508fab48fcb9aa1076b0091e0793"
+    }
+  ],
+  "directories": [
+    {
+      "path": "tmQMg-main/data/xyz",
+      "files": 74547,
+      "bytes": 145572752,
+      "aggregate_sha256": "2eaf5459e2ad7898267f594338b7d5425f609158ee2d362eda538db0ef511490"
+    },
+    {
+      "path": "natqg/d-NatQ_graphs",
+      "files": 74547,
+      "bytes": 31418572164,
+      "aggregate_sha256": "204ece0c8ef0a170f697345ec971ba2f5a2d6df126e2967d454f0525d238b135"
+    }
+  ]
+}

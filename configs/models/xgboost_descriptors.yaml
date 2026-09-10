@@ -1,0 +1,13 @@
+model_id: xgboost_descriptors
+seed: 2737188456
+n_estimators: 300
+max_depth: 6
+learning_rate: 0.05
+subsample: 0.8
+colsample_bytree: 0.8
+n_jobs: 8
+development_table: outputs/phase1/development_cleaned.parquet
+development_split: outputs/phase1/splits/development.json
+data_fingerprint_file: outputs/phase1/data_fingerprint.json
+confirmatory: true
+out_dir: outputs/runs/xgboost_descriptors_seed2737188456

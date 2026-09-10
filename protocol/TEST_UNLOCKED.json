@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "unlocked_utc": "2026-07-26T16:15:48.552835+00:00",
+  "git_commit_before_unlock_record": "df589aa4941d2231aaeec7a5e38c4c5ff3e39cb6",
+  "protocol_sha256": "cf91d1595fa4b4938ca62a06db300a8d85abac01dfba1bac0c2f41c7f60f79cd",
+  "ensemble_manifest_sha256": "28426de66649736439a728d3fb94c1e0a42eeb505b4ccb5c5159a9d8ef3111bc",
+  "data_fingerprint_sha256": "48973a4b8000272da52200f41451c16d99d3bdd1f586701b66d3aa977990f6e0",
+  "locked_test_ids_sha256": "0cfcf691d8403cf879840c7db97f6bb69d6ecf7df3c3e211f7be6b35c5b5a700",
+  "n_test_molecules": 7425,
+  "authorized_scope": "one automated confirmatory prediction campaign for every frozen model followed by the preregistered analysis"
+}

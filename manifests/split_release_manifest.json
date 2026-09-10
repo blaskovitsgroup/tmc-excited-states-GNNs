@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "created_utc": "2026-07-24T18:56:40Z",
+  "generation_commit": "0bf486adbbdd671310b3cfcdeec503fbb7db8018",
+  "generation_tag": "implementation-local-20260724",
+  "algorithm": "StratifiedGroupKFold",
+  "seed": 20260724,
+  "rerolls": 0,
+  "sizes": {
+    "train": 59417,
+    "validation": 7431,
+    "locked_test": 7425
+  },
+  "files": {
+    "cleaned_tmQMg_star.parquet": "c593d04edb186ea6aa38499ada09228a1213a04646ca182bb1683746f05e5150",
+    "development_cleaned.parquet": "afce9d3cb538594c7e2f37d0c7a80ae085512f37cc5a71ae1493da4ef9dc1700",
+    "development.json": "29de20a0b1325915920d7cff88f8005fd581dc9bc16d580665456de9370cb4ef",
+    "locked_test_ids.json": "0cfcf691d8403cf879840c7db97f6bb69d6ecf7df3c3e211f7be6b35c5b5a700",
+    "identity_groups.csv": "cc7bbba81893260560879a7e6df8dfc8f4dc3082d71939c6c7d6bac9ce099c14",
+    "split_audit.json": "175bbc78742b74a54d987b727349bc4f7855e382d0d500105f2d96871a4f6bc9",
+    "split_distribution_audit.json": "7b11196ef470fc052841f64ecbf15056ab982e8c76a7fb6875f2163350588472",
+    "data_fingerprint.json": "5abc58d68e784a577374aca019527a87ae85e568e02e18a21a4296559765dd90"
+  },
+  "structural_audit": {
+    "all_checks_passed": true,
+    "identity_groups": 72644,
+    "non_singleton_identity_groups": 1325,
+    "largest_identity_group": 11,
+    "verified_near_geometry_pairs": 327,
+    "cross_partition_identity_groups": 0,
+    "cross_partition_chemical_keys": 0,
+    "cross_partition_near_geometry_pairs": 0
+  },
+  "timestamp_limitation": "Local Git history and filesystem only; no third-party timestamp was available."
+}
