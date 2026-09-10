@@ -1,4 +1,4 @@
-# Excited-state prediction for transition-metal complexes
+# Graph Neural Networks for Accelerated Prediction of Excited-State Properties in Transition-Metal Complexes
 
 Code, trained models, input data, and evaluation records for predicting excited-state
 properties of transition-metal complexes. The study compares nine configurations:
