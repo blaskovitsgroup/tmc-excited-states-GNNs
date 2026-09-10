@@ -5,6 +5,12 @@ properties of transition-metal complexes. The study compares nine configurations
 XGBoost; Connectivity Graph, u-NatQ, d-NatQ; SchNet, PaiNN; and PaiNN combined
 with each of the three graph representations.
 
+This repository contains the source code and lightweight release records. The large
+trained-model and dataset assets are distributed separately and are required for
+model prediction or full retraining. A source-only GitHub clone is therefore not a
+complete runnable model bundle until those assets have been restored at their
+documented relative paths.
+
 **PaiNN requires an XYZ geometry and its formal molecular charge.** No precomputed
 graph, NBO calculation, ground-state descriptors, or new TD-DFT calculation is
 required. Predictions are returned for gas phase and acetone using the supplied
@@ -37,13 +43,12 @@ and assume it is identical.
 All paths are relative to the downloaded package. No author-specific username,
 home directory, cluster account, or installation location is required.
 
-For the supplied handoff, open a terminal in the `GitHub` folder. After online
-publication, users can instead download the code below, replacing `OWNER/REPOSITORY`
-with the actual repository address:
+Open a terminal in the folder containing this README. The public source repository
+can be downloaded with:
 
 ```bash
-git clone https://github.com/OWNER/REPOSITORY.git
-cd REPOSITORY
+git clone https://github.com/blaskovitsgroup/tmc-excited-states-GNNs.git
+cd tmc-excited-states-GNNs
 ```
 
 Install Python 3.11 first if `python3.11 --version` is not available. Then run
@@ -102,9 +107,13 @@ dependencies for additional archived experiments; it is not needed for PaiNN.
 
 ### Trained-model assets
 
-The local handoff already contains the assets. For an online Git clone, the
-maintainer must supply separate download links; these have not yet been assigned.
-Extract the assets into the repository root without changing their directory names.
+The GitHub source repository intentionally excludes the large model and dataset
+assets. The complete local handoff contains them, but users starting from GitHub
+must obtain the matching asset bundle from the project maintainer and extract it
+into the repository root without changing its directory names. There are currently
+no public asset-download links in this repository, so a fresh clone cannot pass the
+model self-test or make predictions until the bundle is installed.
+
 The PaiNN application uses:
 
 - `manifests/final_ensemble_manifest.json`: ensemble members and checkpoint hashes.
@@ -299,32 +308,13 @@ The original direct command is also valid when the correct interpreter is used:
 - `publication/`: validation records and file-integrity manifests.
 - `predictor_webapp/setup_painn.sh`, `predictor_webapp/start_painn.sh`: environment setup and reliable application launch.
 
-## Preparing the public repository
-
-This handoff has not been uploaded. Before publication, the maintainer must:
-
-1. Choose a software license with the authors and retain third-party data notices.
-2. Create the repository and replace the example `OWNER/REPOSITORY` address.
-3. Publish the model/data assets separately and add real download links to the
-   trained-model-assets section. This is required before promising clone-and-run use.
-4. Test a clean clone plus those downloaded assets using setup, self-test, browser
-   prediction, and command-line prediction. Never upload `.venv` or private papers.
+## Release and asset notes
 
 `.gitignore` excludes large outputs, source data, manuscript files, and environments.
-After reviewing the files to be published, the maintainer can run:
-
-```bash
-git init -b main
-git add .
-git status --short
-git commit -m "Add excited-state models and reproduction workflows"
-git remote add origin https://github.com/OWNER/REPOSITORY.git
-git push -u origin main
-```
-
+The tracked source and manifests document the experiment and package validation;
+`publication/BUNDLE_MANIFEST.json` records the files expected in the complete handoff.
 Distribute large assets with their original relative directory paths and checksums;
-do not force-add them to ordinary Git commits. `publication/BUNDLE_MANIFEST.json`
-records the full handoff. `README.md` is the single installation and usage guide;
-other retained records document the experiment and package validation.
-#   t m c - e x c i t e d - s t a t e s - G N N s  
- 
+do not force-add them to ordinary Git commits. Before describing this repository as
+fully runnable from a clean clone, publish an asset bundle or add maintainer-provided
+download instructions, then test setup, self-test, browser prediction, and
+command-line prediction from a clean checkout.
