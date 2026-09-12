@@ -299,3 +299,15 @@ The original direct command is also valid when the correct interpreter is used:
 - `publication/`: validation records and file-integrity manifests.
 - `predictor_webapp/setup_painn.sh`, `predictor_webapp/start_painn.sh`: environment setup and reliable application launch.
 
+## Citation
+
+If you use this code or the associated data in your work, please cite the following:
+
+```bibtex
+@article{elayan2026graph,
+  title={Graph Neural Networks for Accelerated Prediction of Excited-State Properties in Transition-Metal Complexes},
+  author={Elayan, Ismael A. and Castro-Miyashiro, J. Diego and Blaskovits, J. Terence},
+  journal={ChemRxiv},
+  year={2026}
+}
+```
