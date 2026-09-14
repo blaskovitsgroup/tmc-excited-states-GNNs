@@ -311,3 +311,6 @@ If you use this code or the associated data in your work, please cite the follow
   year={2026}
 }
 ```
+
+## Contact
+For questions, reports, and suggestions, please contact Ismael Elayan at elayan[at]ualberta[dot]ca
